@@ -1,53 +1,69 @@
+///
+/// entension.js - Main extension code.
+///
 
-const St = imports.gi.St;
-const Main = imports.ui.main;
-const Tweener = imports.ui.tweener;
+const GLib = imports.gi.GLib;
 
-let text, button;
+const extension = imports.misc.extensionUtils.getCurrentExtension();
+const formatTargets = extension.metadata.formatTargets;
+const formatTargetObjects = extension.imports.formatTargets;
+const settings = new extension.imports.Settings.Class();
+const Utilities = extension.imports.Utilities;
 
-function _hideHello() {
-    Main.uiGroup.remove_actor(text);
-    text = null;
-}
+let activeTargets = {};
+let updateTargetsTimeoutID = 0;
 
-function _showHello() {
-    if (!text) {
-        text = new St.Label({ style_class: 'helloworld-label', text: "Hello, world!" });
-        Main.uiGroup.add_actor(text);
-    }
-
-    text.opacity = 255;
-
-    let monitor = Main.layoutManager.primaryMonitor;
-
-    text.set_position(monitor.x + Math.floor(monitor.width / 2 - text.width / 2),
-                      monitor.y + Math.floor(monitor.height / 2 - text.height / 2));
-
-    Tweener.addTween(text,
-                     { opacity: 0,
-                       time: 2,
-                       transition: 'easeOutQuad',
-                       onComplete: _hideHello });
-}
-
+///
+/// Initialising function
+///
 function init() {
-    button = new St.Bin({ style_class: 'panel-button',
-                          reactive: true,
-                          can_focus: true,
-                          x_fill: true,
-                          y_fill: false,
-                          track_hover: true });
-    let icon = new St.Icon({ icon_name: 'system-run-symbolic',
-                             style_class: 'system-status-icon' });
-
-    button.set_child(icon);
-    button.connect('button-press-event', _showHello);
+	formatTargets.forEach((formatTarget) => formatTargetObjects[formatTarget].init());
 }
 
+///
+/// Update all enabled format targets.
+///
+/// @return {boolean} Always returns true to loop.
+///
+function updateTargets() {
+	formatTargets.forEach((formatTarget) => {
+		const formatTargetObject = formatTargetObjects[formatTarget];
+
+		if (settings.getToggle(formatTarget)) {
+			if (!activeTargets[formatTarget]) {
+				activeTargets[formatTarget] = true;
+				formatTargetObject.enable();
+			}
+
+			formatTargetObject.update(Utilities.dateTimeFormat(settings.getFormat(formatTarget) || formatTargetObject.defaultFormat));
+		} else if (activeTargets[formatTarget]) {
+			activeTargets[formatTarget] = false;
+			formatTargetObject.disable();
+		}
+	});
+
+	return true;
+}
+
+///
+/// Enable, called when extension is enabled or when screen is unlocked.
+///
 function enable() {
-    Main.panel._rightBox.insert_child_at_index(button, 0);
+	activeTargets = {};
+	updateTargetsTimeoutID = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 1000, updateTargets);
 }
 
+///
+/// Disable, called when extension is disabled or when screen is locked.
+///
 function disable() {
-    Main.panel._rightBox.remove_child(button);
+	GLib.Source.remove(updateTargetsTimeoutID);
+	updateTargetsTimeoutID = 0;
+
+	// Disable all active targets
+	for (var formatTarget in activeTargets) {
+		if (activeTargets[formatTarget]) {
+			formatTargetObjects[formatTarget].disable();
+		}
+	}
 }

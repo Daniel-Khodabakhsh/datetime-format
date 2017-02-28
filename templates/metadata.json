@@ -1,0 +1,9 @@
+{
+	"uuid": "${uuid}",
+	"name": "${name}",
+	"description": "${description}",
+	"shell-version": ${gnomeShellVersions},
+	"url": "${url}",
+	"settingsSchema": "${settingsSchema}",
+	"formatTargets": ${formatTargets}
+}
