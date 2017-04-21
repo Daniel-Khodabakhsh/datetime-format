@@ -15,6 +15,7 @@ To install the extension, run the build.js installation script with node:
 
 ```
 git clone https://github.com/Daniel-Khodabakhsh/datetime-format.git
+git checkout release
 cd datetime-format
 node build.js
 ```
