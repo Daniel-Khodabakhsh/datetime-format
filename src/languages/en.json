@@ -104,6 +104,12 @@
 				["1, 2, ...", "An optional decimal width specifier may follow the (possibly absent) flag.  If the natural size of the field is smaller than this width, then the result string is padded (on the left) to the specified width."],
 				["E, O", "Some conversion specifications can be modified by preceding the conversion specifier character by the E or O modifier to indicate that an alternative format should be used.  If the alternative format or specification does not exist for the current locale, the behavior will be as if the unmodified conversion specification were used.\nThe Single UNIX Specification mentions %Ec, %EC, %Ex, %EX, %Ey, %EY, %Od, %Oe, %OH, %OI, %Om, %OM, %OS, %Ou, %OU, %OV, %Ow, %OW, %Oy, where the effect of the O modifier is to use alternative numeric symbols (say, roman numerals), and that of the E modifier is to use a locale-dependent alternative representation."]
 			]
+		},
+		{
+			"label": "Other Options",
+			"content": [
+				["+", "Prefix the '%' character with a '+' sign to capitalize the next word."]
+			]
 		}
 	]
 }
