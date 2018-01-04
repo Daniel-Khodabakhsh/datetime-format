@@ -15,9 +15,9 @@ To install the extension, run the build.js installation script with node:
 
 ```
 git clone https://github.com/Daniel-Khodabakhsh/datetime-format.git
-git checkout release
 cd datetime-format
-node build.js
+git checkout release
+node --use_strict build.js
 ```
 
 This will install the extension in `~/.local/share/gnome-shell/extensions/`.
