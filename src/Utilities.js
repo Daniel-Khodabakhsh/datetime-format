@@ -12,7 +12,12 @@ const Gtk = imports.gi.Gtk;
 /// @return {string} Datetime representation of format, or format if the conversion fails, or datetime representation of defaultFormat, or blank.
 ///
 function dateTimeFormat(format, defaultFormat) {
-	return (format && new Date().toLocaleFormat(format) || format) || defaultFormat && new Date().toLocaleFormat(defaultFormat) || "";
+	var dtf = (format && new Date().toLocaleFormat(format) || format) || defaultFormat && new Date().toLocaleFormat(defaultFormat) || "";
+	// Capitalizes the words prefixed by + sign
+	dtf = dtf.replace(/(\+\b\w)/gi, function(m) {
+		return m.toUpperCase().replace("+", "");
+	});
+	return dtf;	
 }
 
 ///
