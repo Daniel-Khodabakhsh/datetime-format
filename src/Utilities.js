@@ -12,7 +12,13 @@ const Gtk = imports.gi.Gtk;
 /// @return {string} Datetime representation of format, or format if the conversion fails, or datetime representation of defaultFormat, or blank.
 ///
 function dateTimeFormat(format, defaultFormat) {
-	return (format && new Date().toLocaleFormat(format) || format) || defaultFormat && new Date().toLocaleFormat(defaultFormat) || "";
+	function escapeUnicode(str) {
+		return str.replace(/[^\0-~]/g, function(ch) {
+			return "\\u" + ("0000" + ch.charCodeAt().toString(16)).slice(-4);
+		});
+	}
+
+	return JSON.parse('"' + escapeUnicode((format && new Date().toLocaleFormat(escapeUnicode(format)) || format) || defaultFormat && new Date().toLocaleFormat(escapeUnicode(defaultFormat)) || "").replace('"',     '\\"') + '"');
 }
 
 ///
