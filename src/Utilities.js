@@ -2,7 +2,7 @@
 /// Common Utilities
 ///
 
-const { GLib, Gtk ) = imports.gi;
+const { GLib, Gtk } = imports.gi;
 let _localTimeZone = null;
 ///
 /// Convert string to datetime format.
