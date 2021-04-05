@@ -169,6 +169,9 @@
               <object class="GtkLabel" id="editWindowFormatFrameLabel">
                 <property name="can_focus">0</property>
                 <property name="label" translatable="yes">Format</property>
+                <attributes>
+                  <attribute name="weight" value="bold"></attribute>
+                </attributes>
               </object>
             </child>
           </object>
@@ -191,6 +194,9 @@
               <object class="GtkLabel" id="editWindowPreviewFrameLabel">
                 <property name="can_focus">0</property>
                 <property name="label" translatable="yes">Preview</property>
+                <attributes>
+                  <attribute name="weight" value="bold"></attribute>
+                </attributes>
               </object>
             </child>
           </object>
@@ -212,6 +218,9 @@
               <object class="GtkLabel" id="editWindowFormatOptionsFrameLabel">
                 <property name="can_focus">0</property>
                 <property name="label" translatable="yes">Format options</property>
+                <attributes>
+                  <attribute name="weight" value="bold"></attribute>
+                </attributes>
               </object>
             </child>
           </object>
