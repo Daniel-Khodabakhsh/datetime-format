@@ -56,8 +56,8 @@ const create = function (container, formatTarget, builder, settings, editWindow)
 
 	// Edit button click -> show edit window
 	builder.get_object("formatTargetEditButton").connect("clicked", function () {
-		editWindow.show(formatTarget, formatTargetObject, updatePreview, name);
+		editWindow.showWindow(formatTarget, formatTargetObject, updatePreview, name);
 	});
 
-	container.pack_start(builder.get_object("formatTargetBox"), false, true, 0);
+	container.append(builder.get_object("formatTargetBox"), false, true, 0);
 };
