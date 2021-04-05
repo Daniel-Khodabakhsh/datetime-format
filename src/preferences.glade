@@ -249,4 +249,13 @@
        </object>
     </child>
   </object>
+
+  <object class="GtkSizeGroup">
+    <property name="mode">horizontal</property>
+    <widgets>
+      <widget name="editWindowApplyButton"/>
+      <widget name="editWindowCloseButton"/>
+    </widgets>
+  </object>
+
 </interface>
