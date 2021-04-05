@@ -27,15 +27,15 @@ function getBuilder(gladeContent) {
 // Code from https://gitlab.gnome.org/GNOME/gnome-shell/-/blob/master/js/ui/environment.js
 // Work around https://bugzilla.mozilla.org/show_bug.cgi?id=508783
 Date.prototype.toLocaleFormat = function (format) {
-        if (_localTimeZone === null)
-            _localTimeZone = GLib.TimeZone.new_local();
+	if (_localTimeZone === null)
+		_localTimeZone = GLib.TimeZone.new_local();
 
-        let dt = GLib.DateTime.new(_localTimeZone,
-            this.getFullYear(),
-            this.getMonth() + 1,
-            this.getDate(),
-            this.getHours(),
-            this.getMinutes(),
-            this.getSeconds());
-        return dt?.format(format) ?? '';
-    };
+	let dt = GLib.DateTime.new(_localTimeZone,
+		this.getFullYear(),
+		this.getMonth() + 1,
+		this.getDate(),
+		this.getHours(),
+		this.getMinutes(),
+		this.getSeconds());
+	return dt?.format(format) ?? '';
+};

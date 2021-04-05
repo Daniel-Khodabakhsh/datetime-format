@@ -16,7 +16,7 @@ const Class = function (parent, gladeFile, settings, language) {
 
 	const builder = Utilities.getBuilder(gladeFile);
 	const window = builder.get_object("editWindow");
-	const header = builder.get_object("editWindowHeaderBar");
+	const title = builder.get_object("editWindowTitle");
 	const applyButton = builder.get_object("editWindowApplyButton");
 	const formatEntry = builder.get_object("editWindowFormatEntry");
 	const preview = builder.get_object("editWindowPreviewLabel");
@@ -70,7 +70,7 @@ const Class = function (parent, gladeFile, settings, language) {
 	formatEntry.connect("changed", updatePreview);
 
 	// Hide window and disconnect elements.
-	const hide = function () {
+	const hideWindow = function () {
 		// Stop updatePreview()
 		if (updateTimeoutID != 0) {
 			GLib.Source.remove(updateTimeoutID);
@@ -87,7 +87,8 @@ const Class = function (parent, gladeFile, settings, language) {
 	};
 
 	// Close button
-	builder.get_object("editWindowCloseButton").connect("clicked", hide);
+	builder.get_object("editWindowCloseButton").connect("clicked", hideWindow);
+	//builder.get_object("editWindowCloseButton").connect_swapped(window, "response", hide, window);
 
 	///
 	/// Show the edit window.
@@ -98,8 +99,8 @@ const Class = function (parent, gladeFile, settings, language) {
 	/// @param {function(): boolean} updateParentPreview - Callback to update the parent preview label.
 	/// @param {string} name - Format target name.
 	///
-	this.show = function (formatTarget, formatTargetObject, updateParentPreview, name) {
-		header.set_title(name + " - " + language.format);
+	this.showWindow = function (formatTarget, formatTargetObject, updateParentPreview, name) {
+		title.set_text(name + " - " + language.format);
 		window.set_transient_for(parent.get_parent().get_parent());
 		formatEntry.set_text(settings.getFormat(formatTarget));
 		formatEntry.select_region(0, -1);
@@ -108,13 +109,13 @@ const Class = function (parent, gladeFile, settings, language) {
 
 		// Click apply button, hide window, save settings, and update parent
 		applyButtonClickID = applyButton.connect("clicked", function () {
-			hide();
+			hideWindow();
 			settings.setFormat(formatTarget, formatEntry.get_text());
 			updateParentPreview();
 		});
 
 		updateTimeoutID = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 1000, updatePreview);
 		updatePreview();
-		window.show_all();
+		window.show();
 	};
 };

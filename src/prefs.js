@@ -103,6 +103,10 @@ function buildPrefsWidget() {
 	const builder = Utilities.getBuilder(gladeFile);
 	const preferencesBox = builder.get_object("preferences");
 	const formatTargetsBox = builder.get_object("preferencesFormatTargetsBox");
+	GLib.idle_add(GLib.PRIORITY_DEFAULT, ()=> {
+		let prefsWindow = preferencesBox.get_root();
+		prefsWindow.default_height = 480;
+	});
 
 	// Load language
 	const language = JSON.parse(
@@ -125,9 +129,9 @@ function buildPrefsWidget() {
 	);
 
 	// Set stylesheet
-	const cssProvider = new Gtk.CssProvider();
+	let cssProvider = new Gtk.CssProvider();
 	cssProvider.load_from_path(filePath("preferences.css"));
-	Gtk.StyleContext.add_provider_for_screen(imports.gi.Gdk.Screen.get_default(), cssProvider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+	Gtk.StyleContext.add_provider_for_display(imports.gi.Gdk.Display.get_default(), cssProvider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
 	// Create edit window
 	const editWindow = new extension.imports.EditWindow.Class(preferencesBox, gladeFile, settings, language);
