@@ -18,6 +18,7 @@ const Class = function (parent, gladeFile, settings, language) {
 	const window = builder.get_object("editWindow");
 	const title = builder.get_object("editWindowTitle");
 	const applyButton = builder.get_object("editWindowApplyButton");
+	const closeButton = builder.get_object("editWindowCloseButton");
 	const formatEntry = builder.get_object("editWindowFormatEntry");
 	const preview = builder.get_object("editWindowPreviewLabel");
 	const notebook = builder.get_object("editWindowFormatOptionsNotebook");
@@ -68,6 +69,12 @@ const Class = function (parent, gladeFile, settings, language) {
 	};
 
 	formatEntry.connect("changed", updatePreview);
+	formatEntry.connect("notify::text", () => {
+		applyButton.get_style_context().add_class("suggested-action");
+		applyButton.set_sensitive(true);
+		applyButton.set_receives_default(true);
+	});
+
 
 	// Hide window and disconnect elements.
 	const hideWindow = function () {
@@ -87,7 +94,7 @@ const Class = function (parent, gladeFile, settings, language) {
 	};
 
 	// Close button
-	builder.get_object("editWindowCloseButton").connect("clicked", hideWindow);
+	closeButton.connect("clicked", hideWindow);
 	//builder.get_object("editWindowCloseButton").connect_swapped(window, "response", hide, window);
 
 	///
@@ -105,6 +112,9 @@ const Class = function (parent, gladeFile, settings, language) {
 		formatEntry.set_text(settings.getFormat(formatTarget));
 		formatEntry.select_region(0, -1);
 		formatEntry.grab_focus();
+		applyButton.get_style_context().remove_class("suggested-action");
+		applyButton.set_sensitive(false);
+		closeButton.set_receives_default(true);
 		defaultFormat = formatTargetObject.defaultFormat;
 
 		// Click apply button, hide window, save settings, and update parent
