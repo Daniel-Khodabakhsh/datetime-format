@@ -11,7 +11,7 @@
 /// @param {Settings} settings - Settings object.
 /// @param {EditWindow} editWindow - Edit window to show when the settings button is pressed.
 ///
-const create = function (container, formatTarget, builder, settings, editWindow) {
+var create = function (container, formatTarget, builder, settings, editWindow) {
 	const GLib = imports.gi.GLib;
 	const extension = imports.misc.extensionUtils.getCurrentExtension();
 	const formatTargetObject = extension.imports.formatTargets[formatTarget];
