@@ -4,7 +4,7 @@ const name = {
 	ja: "ステータスバー"
 };
 
-const defaultFormat = "%c";
+var defaultFormat = "%c";
 
 let clockDisplay;
 let dateTimeDisplay;

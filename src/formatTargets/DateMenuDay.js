@@ -4,7 +4,7 @@ const name = {
 	ja: "日付メニュー：日"
 };
 
-const defaultFormat = "%A";
+var defaultFormat = "%A";
 
 let dayLabel;
 let dateTimeDisplay;
