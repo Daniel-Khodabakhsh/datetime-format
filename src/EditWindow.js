@@ -108,7 +108,7 @@ var Class = function (parent, gladeFile, settings, language) {
 	///
 	this.showWindow = function (formatTarget, formatTargetObject, updateParentPreview, name) {
 		title.set_text(name + " - " + language.format);
-		window.set_transient_for(parent.get_parent().get_parent());
+		window.set_transient_for(parent.get_root());
 		formatEntry.set_text(settings.getFormat(formatTarget));
 		formatEntry.select_region(0, -1);
 		formatEntry.grab_focus();
