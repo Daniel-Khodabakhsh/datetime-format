@@ -1,4 +1,4 @@
-const name = {
+var name = {
 	en: "Date Menu: Day",
 	fr: "Menu de date: Jour",
 	ja: "日付メニュー：日"

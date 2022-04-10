@@ -1,4 +1,4 @@
-const name = {
+var name = {
 	en: "Status Bar",
 	fr: "Barre d'état",
 	ja: "ステータスバー"
