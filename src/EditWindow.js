@@ -10,7 +10,7 @@
 /// @param {Settings} settings - Settings object.
 /// @param {Object} language - Language map.
 /// 
-const Class = function (parent, gladeFile, settings, language) {
+var Class = function (parent, gladeFile, settings, language) {
 	const GLib = imports.gi.GLib;
 	const Utilities = imports.misc.extensionUtils.getCurrentExtension().imports.Utilities;
 
