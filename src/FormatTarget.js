@@ -59,5 +59,5 @@ const create = function (container, formatTarget, builder, settings, editWindow)
 		editWindow.showWindow(formatTarget, formatTargetObject, updatePreview, name);
 	});
 
-	container.append(builder.get_object("formatTargetBox"), false, true, 0);
+	container.append(builder.get_object("formatTargetBox"));
 };
