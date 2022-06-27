@@ -1,132 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.20.0 -->
 <interface>
-  <requires lib="gtk+" version="3.20"/>
-  <object class="GtkImage" id="closeImage">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="icon_name">window-close-symbolic</property>
-  </object>
-  <object class="GtkImage" id="editImage">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="icon_name">applications-system-symbolic</property>
-  </object>
+  <requires lib="gtk" version="4.0"/>
+
   <object class="GtkBox" id="formatTargetBox">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
+    <property name="can_focus">0</property>
+    <property name="hexpand">0</property>
+    <property name="orientation">vertical</property>
+    <property name="spacing">12</property>
+    <property name="margin_top">30</property>
+    <property name="margin_bottom">0</property>
+    <property name="margin_start">36</property>
+    <property name="margin_end">36</property>
     <property name="valign">center</property>
-    <property name="hexpand">True</property>
-    <property name="spacing">10</property>
     <child>
-      <object class="GtkSwitch" id="formatTargetToggleSwitch">
-        <property name="visible">True</property>
-        <property name="can_focus">True</property>
-        <property name="valign">center</property>
+      <object class="GtkLabel" id="formatTargetTitleLabel">
+        <property name="vexpand">0</property>
+        <property name="halign">start</property>
+        <property name="can_focus">0</property>
+        <property name="label" translatable="yes">&lt;title&gt;</property>
+        <attributes>
+           <attribute name="weight" value="bold"></attribute>
+        </attributes>
       </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">0</property>
-      </packing>
     </child>
     <child>
       <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="hexpand">True</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkLabel" id="formatTargetTitleLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">&lt;title&gt;</property>
-            <attributes>
-              <attribute name="weight" value="bold"/>
-            </attributes>
-          </object>
-          <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
+        <property name="can_focus">1</property>
+        <property name="valign">center</property>
+        <property name="hexpand">1</property>
+        <property name="spacing">12</property>
+        <property name="orientation">horizontal</property>
         <child>
           <object class="GtkLabel" id="formatTargetPreviewLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can_focus">0</property>
+            <property name="valign">center</property>
+            <property name="halign">start</property>
+            <property name="hexpand">1</property>
             <property name="label" translatable="yes">&lt;preview&gt;</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
         </child>
+        <child>
+          <object class="GtkButton" id="formatTargetEditButton">
+            <property name="can_focus">1</property>
+            <property name="receives_default">1</property>
+            <property name="valign">center</property>
+            <property name="hexpand">0</property>
+            <property name="icon_name">emblem-system-symbolic</property>
+            <style>
+              <class name="circular"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkSwitch" id="formatTargetToggleSwitch">
+            <property name="can_focus">1</property>
+            <property name="valign">center</property>
+            <property name="hexpand">0</property>
+          </object>
+        </child>
+        <style>
+           <class name="frame"/>
+           <class name="view"/>
+           <class name="formatTargetBox"/>
+         </style>
       </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">1</property>
-      </packing>
     </child>
-    <child>
-      <object class="GtkButton" id="formatTargetEditButton">
-        <property name="visible">True</property>
-        <property name="can_focus">True</property>
-        <property name="receives_default">True</property>
-        <property name="valign">center</property>
-        <property name="image">editImage</property>
-        <property name="always_show_image">True</property>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">2</property>
-      </packing>
-    </child>
-    <style>
-      <class name="formatTargetBox"/>
-    </style>
   </object>
+
   <object class="GtkLabel" id="formatOptionDescription">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
+    <property name="can_focus">0</property>
     <property name="valign">start</property>
-    <property name="hexpand">True</property>
+    <property name="hexpand">1</property>
     <property name="label" translatable="yes">&lt;format option description&gt;</property>
-    <property name="wrap">True</property>
+    <property name="wrap">1</property>
     <property name="xalign">0</property>
   </object>
+
   <object class="GtkLabel" id="formatOptionLabel">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
+    <property name="can_focus">0</property>
     <property name="valign">start</property>
     <property name="label" translatable="yes">&lt;format option&gt;</property>
     <style>
       <class name="monospace"/>
     </style>
   </object>
+
   <object class="GtkScrolledWindow" id="formatOptionsPage">
-    <property name="visible">True</property>
-    <property name="can_focus">True</property>
-    <property name="vexpand">True</property>
+    <property name="vexpand">1</property>
     <property name="hscrollbar_policy">never</property>
-    <property name="overlay_scrolling">False</property>
+    <property name="overlay_scrolling">0</property>
     <child>
       <object class="GtkViewport">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="shadow_type">none</property>
+        <property name="can_focus">0</property>
         <child>
           <object class="GtkGrid" id="formatOptionsPageGrid">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="margin_left">10</property>
-            <property name="margin_right">10</property>
+            <property name="can_focus">0</property>
+            <property name="margin-start">10</property>
+            <property name="margin-end">10</property>
             <property name="margin_top">10</property>
             <property name="margin_bottom">10</property>
-            <property name="hexpand">True</property>
+            <property name="hexpand">1</property>
             <property name="row_spacing">15</property>
             <property name="column_spacing">10</property>
           </object>
@@ -134,26 +107,22 @@
       </object>
     </child>
   </object>
+
   <object class="GtkLabel" id="formatOptionsPageLabel">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
+    <property name="can_focus">0</property>
     <property name="label" translatable="yes">&lt;page label&gt;</property>
   </object>
+
   <object class="GtkScrolledWindow" id="preferences">
-    <property name="visible">True</property>
-    <property name="can_focus">True</property>
-    <property name="vexpand">True</property>
+    <property name="vexpand">1</property>
     <child>
       <object class="GtkViewport">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="shadow_type">none</property>
+        <property name="can_focus">0</property>
         <child>
           <object class="GtkBox" id="preferencesFormatTargetsBox">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="margin_left">20</property>
-            <property name="margin_right">20</property>
+            <property name="can_focus">0</property>
+            <property name="margin-start">20</property>
+            <property name="margin-end">20</property>
             <property name="margin_top">10</property>
             <property name="margin_bottom">10</property>
             <property name="orientation">vertical</property>
@@ -165,178 +134,137 @@
       </object>
     </child>
   </object>
-  <object class="GtkImage" id="saveImage">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="icon_name">gtk-apply</property>
-  </object>
-  <object class="GtkDialog" id="editWindow">
+
+  <object class="GtkWindow" id="editWindow">
     <property name="width_request">700</property>
-    <property name="can_focus">False</property>
-    <property name="modal">True</property>
-    <property name="type_hint">dialog</property>
-    <child internal-child="vbox">
+    <property name="height_request">700</property>
+    <property name="can_focus">1</property>
+    <property name="destroy_with_parent">1</property>
+    <property name="modal">1</property>
+    <child>
       <object class="GtkBox">
-        <property name="can_focus">False</property>
-        <property name="margin_left">20</property>
-        <property name="margin_right">20</property>
+        <property name="visible">1</property>
+        <property name="can_focus">1</property>
+        <property name="margin-start">20</property>
+        <property name="margin-end">20</property>
         <property name="margin_top">10</property>
         <property name="margin_bottom">20</property>
         <property name="orientation">vertical</property>
         <property name="spacing">10</property>
-        <child internal-child="action_area">
-          <object class="GtkButtonBox">
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
+        <property name="vexpand">1</property>
+        <property name="hexpand">1</property>
+
         <child>
           <object class="GtkFrame">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label_xalign">0</property>
-            <property name="shadow_type">in</property>
+            <property name="can_focus">1</property>
             <child>
               <object class="GtkEntry" id="editWindowFormatEntry">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="margin_left">10</property>
-                <property name="margin_right">10</property>
+                <property name="can_focus">1</property>
+                <property name="margin-start">10</property>
+                <property name="margin-end">10</property>
                 <property name="margin_bottom">10</property>
               </object>
             </child>
             <child type="label">
               <object class="GtkLabel" id="editWindowFormatFrameLabel">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can_focus">0</property>
                 <property name="label" translatable="yes">Format</property>
+                <attributes>
+                  <attribute name="weight" value="bold"></attribute>
+                </attributes>
               </object>
             </child>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
         </child>
+
         <child>
           <object class="GtkFrame">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label_xalign">0</property>
-            <property name="shadow_type">in</property>
+            <property name="can_focus">0</property>
             <child>
               <object class="GtkLabel" id="editWindowPreviewLabel">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_left">10</property>
-                <property name="margin_right">10</property>
+                <property name="can_focus">0</property>
+                <property name="margin-start">10</property>
+                <property name="margin-end">10</property>
                 <property name="margin_bottom">10</property>
-                <property name="label" translatable="yes">&lt;preview&gt;</property>
-                <property name="wrap">True</property>
+                <property name="label">&lt;preview&gt;</property>
+                <property name="wrap">1</property>
               </object>
             </child>
             <child type="label">
               <object class="GtkLabel" id="editWindowPreviewFrameLabel">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can_focus">0</property>
                 <property name="label" translatable="yes">Preview</property>
+                <attributes>
+                  <attribute name="weight" value="bold"></attribute>
+                </attributes>
               </object>
             </child>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
         </child>
+
         <child>
           <object class="GtkFrame">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="vexpand">True</property>
-            <property name="label_xalign">0</property>
-            <property name="shadow_type">in</property>
+            <property name="can_focus">1</property>
+            <property name="vexpand">1</property>
             <child>
               <object class="GtkNotebook" id="editWindowFormatOptionsNotebook">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="margin_left">10</property>
-                <property name="margin_right">10</property>
+                <property name="margin-start">10</property>
+                <property name="margin-end">10</property>
                 <property name="margin_bottom">10</property>
                 <property name="tab_pos">left</property>
               </object>
             </child>
             <child type="label">
               <object class="GtkLabel" id="editWindowFormatOptionsFrameLabel">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can_focus">0</property>
                 <property name="label" translatable="yes">Format options</property>
+                <attributes>
+                  <attribute name="weight" value="bold"></attribute>
+                </attributes>
               </object>
             </child>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">3</property>
-          </packing>
         </child>
       </object>
     </child>
+
     <child type="titlebar">
-      <object class="GtkHeaderBar" id="editWindowHeaderBar">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="title">&lt;title&gt;</property>
-        <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="spacing">5</property>
-            <child>
-              <object class="GtkButton" id="editWindowApplyButton">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="can_default">True</property>
-                <property name="receives_default">True</property>
-                <property name="halign">center</property>
-                <property name="valign">center</property>
-                <property name="image">saveImage</property>
-                <property name="always_show_image">True</property>
-                <style>
-                  <class name="suggested-action"/>
-                </style>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="editWindowCloseButton">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="image">closeImage</property>
-                <property name="always_show_image">True</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="pack_type">end</property>
-          </packing>
-        </child>
-      </object>
+       <object class="GtkHeaderBar">
+          <property name="show-title-buttons">0</property>
+          <property name="title-widget">
+            <object class="GtkLabel" id="editWindowTitle">
+              <property name="label" translatable="yes">Title</property>
+              <property name="single-line-mode">True</property>
+              <property name="ellipsize">end</property>
+              <property name="width-chars">10</property>
+              <style>
+                <class name="title"/>
+              </style>
+            </object>
+          </property>
+          <child type="end">
+            <object class="GtkButton" id="editWindowApplyButton">
+              <property name="label" translatable="yes">Apply</property>
+              <property name="can_focus">1</property>
+              <property name="receives_default">False</property>
+            </object>
+          </child>
+          <child type="start">
+            <object class="GtkButton" id="editWindowCloseButton">
+              <property name="label" translatable="yes">Cancel</property>
+              <property name="can_focus">1</property>
+            </object>
+          </child>
+       </object>
     </child>
   </object>
+
+  <object class="GtkSizeGroup">
+    <property name="mode">horizontal</property>
+    <widgets>
+      <widget name="editWindowApplyButton"/>
+      <widget name="editWindowCloseButton"/>
+    </widgets>
+  </object>
+
 </interface>

@@ -10,14 +10,15 @@
 /// @param {Settings} settings - Settings object.
 /// @param {Object} language - Language map.
 /// 
-const Class = function (parent, gladeFile, settings, language) {
+var Class = function (parent, gladeFile, settings, language) {
 	const GLib = imports.gi.GLib;
 	const Utilities = imports.misc.extensionUtils.getCurrentExtension().imports.Utilities;
 
 	const builder = Utilities.getBuilder(gladeFile);
 	const window = builder.get_object("editWindow");
-	const header = builder.get_object("editWindowHeaderBar");
+	const title = builder.get_object("editWindowTitle");
 	const applyButton = builder.get_object("editWindowApplyButton");
+	const closeButton = builder.get_object("editWindowCloseButton");
 	const formatEntry = builder.get_object("editWindowFormatEntry");
 	const preview = builder.get_object("editWindowPreviewLabel");
 	const notebook = builder.get_object("editWindowFormatOptionsNotebook");
@@ -68,9 +69,15 @@ const Class = function (parent, gladeFile, settings, language) {
 	};
 
 	formatEntry.connect("changed", updatePreview);
+	formatEntry.connect("notify::text", () => {
+		applyButton.get_style_context().add_class("suggested-action");
+		applyButton.set_sensitive(true);
+		applyButton.set_receives_default(true);
+	});
+
 
 	// Hide window and disconnect elements.
-	const hide = function () {
+	const hideWindow = function () {
 		// Stop updatePreview()
 		if (updateTimeoutID != 0) {
 			GLib.Source.remove(updateTimeoutID);
@@ -87,7 +94,8 @@ const Class = function (parent, gladeFile, settings, language) {
 	};
 
 	// Close button
-	builder.get_object("editWindowCloseButton").connect("clicked", hide);
+	closeButton.connect("clicked", hideWindow);
+	//builder.get_object("editWindowCloseButton").connect_swapped(window, "response", hide, window);
 
 	///
 	/// Show the edit window.
@@ -98,23 +106,26 @@ const Class = function (parent, gladeFile, settings, language) {
 	/// @param {function(): boolean} updateParentPreview - Callback to update the parent preview label.
 	/// @param {string} name - Format target name.
 	///
-	this.show = function (formatTarget, formatTargetObject, updateParentPreview, name) {
-		header.set_title(name + " - " + language.format);
-		window.set_transient_for(parent.get_parent().get_parent());
+	this.showWindow = function (formatTarget, formatTargetObject, updateParentPreview, name) {
+		title.set_text(name + " - " + language.format);
+		window.set_transient_for(parent.get_root());
 		formatEntry.set_text(settings.getFormat(formatTarget));
 		formatEntry.select_region(0, -1);
 		formatEntry.grab_focus();
+		applyButton.get_style_context().remove_class("suggested-action");
+		applyButton.set_sensitive(false);
+		closeButton.set_receives_default(true);
 		defaultFormat = formatTargetObject.defaultFormat;
 
 		// Click apply button, hide window, save settings, and update parent
 		applyButtonClickID = applyButton.connect("clicked", function () {
-			hide();
+			hideWindow();
 			settings.setFormat(formatTarget, formatEntry.get_text());
 			updateParentPreview();
 		});
 
 		updateTimeoutID = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 1000, updatePreview);
 		updatePreview();
-		window.show_all();
+		window.show();
 	};
 };
