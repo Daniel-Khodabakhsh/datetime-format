@@ -5,7 +5,7 @@
 ///
 /// Settings constructor.
 ///
-const Class = function () {
+var Class = function () {
 	const Gio = imports.gi.Gio;
 	const extension = imports.misc.extensionUtils.getCurrentExtension();
 

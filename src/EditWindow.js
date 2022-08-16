@@ -10,7 +10,7 @@
 /// @param {Settings} settings - Settings object.
 /// @param {Object} language - Language map.
 /// 
-const Class = function (parent, gladeFile, settings, language) {
+var Class = function (parent, gladeFile, settings, language) {
 	const GLib = imports.gi.GLib;
 	const Utilities = imports.misc.extensionUtils.getCurrentExtension().imports.Utilities;
 
@@ -108,7 +108,7 @@ const Class = function (parent, gladeFile, settings, language) {
 	///
 	this.showWindow = function (formatTarget, formatTargetObject, updateParentPreview, name) {
 		title.set_text(name + " - " + language.format);
-		window.set_transient_for(parent.get_parent().get_parent());
+		window.set_transient_for(parent.get_root());
 		formatEntry.set_text(settings.getFormat(formatTarget));
 		formatEntry.select_region(0, -1);
 		formatEntry.grab_focus();

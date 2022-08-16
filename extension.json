@@ -2,6 +2,9 @@
 	"extension": "datetime-format",
 	"domain": "Daniel-Khodabakhsh.github.com",
 	"description": "Allow users to customise the datetime format on the clock panel and lock screen.",
-	"gnomeShellVersions": ["40.0"],
+	"gnomeShellVersions": [
+		"40.0",
+		"42.0"
+	],
 	"url": "https://github.com/Daniel-Khodabakhsh/datetime-format"
 }

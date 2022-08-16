@@ -4,6 +4,7 @@
 
 const Gtk = imports.gi.Gtk;
 const GLib = imports.gi.GLib;
+const ByteArray = imports.byteArray;
 const extension = imports.misc.extensionUtils.getCurrentExtension();
 const Utilities = extension.imports.Utilities;
 
@@ -83,7 +84,7 @@ function fileExists(file) {
 /// @return {string} File contents.
 ///
 function readFile(file) {
-	return String(GLib.file_get_contents(filePath(file))[1]);
+	return ByteArray.toString(GLib.file_get_contents(filePath(file))[1]);
 }
 
 ///
