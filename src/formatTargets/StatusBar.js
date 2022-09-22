@@ -1,10 +1,10 @@
-const name = {
+var name = {
 	en: "Status Bar",
 	fr: "Barre d'état",
 	ja: "ステータスバー"
 };
 
-const defaultFormat = "%c";
+var defaultFormat = "%c";
 
 let clockDisplay;
 let dateTimeDisplay;
